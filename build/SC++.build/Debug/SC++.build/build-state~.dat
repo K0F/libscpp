@@ -1,0 +1,105 @@
+TSC++
+v7
+r0
+t351106852.125122
+cCheck dependencies
+cProcessPCH++ /var/folders/9c/9clk+5vgHZKBJxjZ25KfVU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SC++_Prefix-dbjyhmpbipoayhbcljebxdmlwrkr/SC++_Prefix.pch.gch SC++_Prefix.pch normal x86_64 c++ com.apple.compilers.gcc.4_2
+cCompileC build/SC++.build/Debug/SC++.build/Objects-normal/x86_64/SC++.o /Users/curtismckinney/Documents/C++Dev/SC++/SC++.cp normal x86_64 c++ com.apple.compilers.gcc.4_2
+cLd /Users/curtismckinney/Documents/C++Dev/SC++/build/Debug/libSC++.dylib normal x86_64
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004B99A23900000000000000EE
+t1268359737
+s238
+
+N/Users/curtismckinney/Documents/C++Dev/SC++/SC++.cp
+c000000004F3D2BD10000000000000194
+t1329408977
+s404
+i<iostream>
+i"SC++.h"
+i"SC++Priv.h"
+
+N/Users/curtismckinney/Documents/C++Dev/SC++/SC++.h
+c000000004F3D2BD1000000000000014B
+t1329408977
+s331
+
+N/Users/curtismckinney/Documents/C++Dev/SC++/SC++Priv.h
+c000000004F3D2BD10000000000000136
+t1329408977
+s310
+
+N/Users/curtismckinney/Documents/C++Dev/SC++/SC++_Prefix.pch
+c000000004F3D2BD1000000000000006E
+t1329408977
+s110
+i<iostream>
+
+N/Users/curtismckinney/Documents/C++Dev/SC++/build/Debug/libSC++.dylib
+t1329414052
+s10880
+
+N/Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/Objects-normal/x86_64/SC++.o
+t1329414051
+s67984
+
+N/Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/Objects-normal/x86_64/libSC++.LinkFileList
+c000000004F3D3FA0000000000000006B
+t1329414048
+s107
+
+N/Users/curtismckinney/Documents/C++Dev/SC++/libs/libsclang.a
+c000000004F3D1CFE000000000049DE30
+t1329405182
+s4841008
+
+N/Users/curtismckinney/Documents/C++Dev/SC++/libs/libscsynth.dylib
+c000000004F3D1C0500000000000E94C8
+t1329404933
+s955592
+
+N/var/folders/9c/9clk+5vgHZKBJxjZ25KfVU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SC++_Prefix-dbjyhmpbipoayhbcljebxdmlwrkr/SC++_Prefix.pch.gch
+t1329414051
+s19804720
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies351106848#351106848#0(0"0(0#1#0"3343187568374212096#0"0#
+
+CCompileC build/SC++.build/Debug/SC++.build/Objects-normal/x86_64/SC++.o /Users/curtismckinney/Documents/C++Dev/SC++/SC++.cp normal x86_64 c++ com.apple.compilers.gcc.4_2
+s351106851.483555
+e351106851.684069
+r1
+xCompileC
+xbuild/SC++.build/Debug/SC++.build/Objects-normal/x86_64/SC++.o
+x/Users/curtismckinney/Documents/C++Dev/SC++/SC++.cp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@59"Compile /Users/curtismckinney/Documents/C++Dev/SC++/SC++.cp351106851#351106851#0(0"0(0#0#51"/Users/curtismckinney/Documents/C++Dev/SC++/SC++.cp8618694176#1467"    cd /Users/curtismckinney/Documents/C++Dev/SC++    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/libSC++-generated-files.hmap -I/Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/libSC++-own-target-headers.hmap -I/Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/libSC++-all-target-headers.hmap -iquote /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/libSC++-project-headers.hmap -F/Users/curtismckinney/Documents/C++Dev/SC++/build/Debug -I/Users/curtismckinney/Documents/C++Dev/SC++/build/Debug/include -I/Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/DerivedSources/x86_64 -I/Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/DerivedSources -include /var/folders/9c/9clk+5vgHZKBJxjZ25KfVU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SC++_Prefix-dbjyhmpbipoayhbcljebxdmlwrkr/SC++_Prefix.pch -c /Users/curtismckinney/Documents/C++Dev/SC++/SC++.cp -o /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/Objects-normal/x86_64/SC++.o0#
+
+CLd /Users/curtismckinney/Documents/C++Dev/SC++/build/Debug/libSC++.dylib normal x86_64
+s351106851.684190
+e351106852.125047
+r1
+xLd
+x/Users/curtismckinney/Documents/C++Dev/SC++/build/Debug/libSC++.dylib
+xnormal
+xx86_64
+lSLF07#2@74"Link /Users/curtismckinney/Documents/C++Dev/SC++/build/Debug/libSC++.dylib351106851#351106852#0(0"0(0#0#0"8622765184#707"    cd /Users/curtismckinney/Documents/C++Dev/SC++    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/g++-4.2 -arch x86_64 -dynamiclib -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/curtismckinney/Documents/C++Dev/SC++/build/Debug -L/Users/curtismckinney/Documents/C++Dev/SC++/libs -F/Users/curtismckinney/Documents/C++Dev/SC++/build/Debug -filelist /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/Objects-normal/x86_64/libSC++.LinkFileList -install_name /usr/local/lib/libSC++.dylib -mmacosx-version-min=10.6 -lscsynth -lsclang -single_module -compatibility_version 1 -current_version 1 -o /Users/curtismckinney/Documents/C++Dev/SC++/build/Debug/libSC++.dylib0#
+
+CProcessPCH++ /var/folders/9c/9clk+5vgHZKBJxjZ25KfVU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SC++_Prefix-dbjyhmpbipoayhbcljebxdmlwrkr/SC++_Prefix.pch.gch SC++_Prefix.pch normal x86_64 c++ com.apple.compilers.gcc.4_2
+s351106848.767666
+e351106851.483338
+r1
+xProcessPCH++
+x/var/folders/9c/9clk+5vgHZKBJxjZ25KfVU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SC++_Prefix-dbjyhmpbipoayhbcljebxdmlwrkr/SC++_Prefix.pch.gch
+xSC++_Prefix.pch
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@26"Precompile SC++_Prefix.pch351106848#351106851#0(0"0(0#0#59"/Users/curtismckinney/Documents/C++Dev/SC++/SC++_Prefix.pch7309993514852107264#1370"    cd /Users/curtismckinney/Documents/C++Dev/SC++    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++-header -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/libSC++-generated-files.hmap -I/Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/libSC++-own-target-headers.hmap -I/Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/libSC++-all-target-headers.hmap -iquote /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/libSC++-project-headers.hmap -F/Users/curtismckinney/Documents/C++Dev/SC++/build/Debug -I/Users/curtismckinney/Documents/C++Dev/SC++/build/Debug/include -I/Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/DerivedSources/x86_64 -I/Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Debug/SC++.build/DerivedSources -c /Users/curtismckinney/Documents/C++Dev/SC++/SC++_Prefix.pch -o /var/folders/9c/9clk+5vgHZKBJxjZ25KfVU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SC++_Prefix-dbjyhmpbipoayhbcljebxdmlwrkr/SC++_Prefix.pch.gch0#
+
