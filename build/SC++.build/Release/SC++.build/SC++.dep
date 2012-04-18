@@ -1,4 +1,5 @@
-f25a01f6c02de0f3239d6ba085b0b592 d50e5d79294364c30ba73fed4d0706e3 ffffffffffffffffffffffffffffffff 11243376 /Users/curtismckinney/Documents/C++Dev/SC++/build/Release/libSC++.a
+ffffffffffffffffffffffffffffffff 2a613e1177d47293d384069702df2227 ffffffffffffffffffffffffffffffff 69908 /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Release/SC++.build/Objects-normal/x86_64/InternalSynthServer.o
+ffffffffffffffffffffffffffffffff d50e5d79294364c30ba73fed4d0706e3 ffffffffffffffffffffffffffffffff 11243928 /Users/curtismckinney/Documents/C++Dev/SC++/build/Release/libSC++.a
 25ec0142bb1c2474c7c26022aa0e33c1 f0a50a2ed498673b45e4c0e8d4688b79 ffffffffffffffffffffffffffffffff 564032 /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Release/SC++.build/Objects-normal/x86_64/Buffer.o
 25ec014281003abcc7c26022aa339c5d 9f107a6f3d1396d966080731b3c3504c ffffffffffffffffffffffffffffffff 48992 /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Release/SC++.build/Objects-normal/x86_64/Quant.o
 25ec0142c90f313fc7c26022aa33478a c537f7161ac824fd0f636fb6ffb1fb31 ffffffffffffffffffffffffffffffff 73672 /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Release/SC++.build/Objects-normal/x86_64/List.o
@@ -13,7 +14,6 @@ f25a01f6c02de0f3239d6ba085b0b592 d50e5d79294364c30ba73fed4d0706e3 ffffffffffffff
 25ec0142cd12c24ac7c26022aa3306e6 ca0d15dbba635ee860506866c991bf25 ffffffffffffffffffffffffffffffff 317436 /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Release/SC++.build/Objects-normal/x86_64/Thread.o
 25ec0142f665b9abc7c26022aa36f62a 798b5f04e89e194de67af6c3a9ea8788 ffffffffffffffffffffffffffffffff 373320 /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Release/SC++.build/Objects-normal/x86_64/Node.o
 25ec014284a2149cc7c26022aa33077d ef6452f7201dca9e39de79c58cd1b788 ffffffffffffffffffffffffffffffff 71756 /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Release/SC++.build/Objects-normal/x86_64/OSCMessages.o
-25ec0142f8494f2bc7c26022aa0ff77f 2a613e1177d47293d384069702df2227 ffffffffffffffffffffffffffffffff 69356 /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Release/SC++.build/Objects-normal/x86_64/InternalSynthServer.o
 25ec0142f086e4efc7c26022aa369a2d d39d1440d6925abf2dc39319f12f2ea5 ffffffffffffffffffffffffffffffff 204292 /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Release/SC++.build/Objects-normal/x86_64/Bus.o
 25ec01428102b4afc7c26022aa339deb cccfdf41222ec6d1d04865ecdeec38a4 ffffffffffffffffffffffffffffffff 44888 /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Release/SC++.build/Objects-normal/x86_64/SystemActions.o
 25ec01428480b3cbc7c26022aa33bf36 5cd7f3ae0922a7127cca62934939b56c ffffffffffffffffffffffffffffffff 281148 /Users/curtismckinney/Documents/C++Dev/SC++/build/SC++.build/Release/SC++.build/Objects-normal/x86_64/Engine.o

@@ -187,7 +187,6 @@ namespace sc {
 		
 		*/
 		
-		world->mNRTLock->Lock();
 		/*
 		for(int i = 0; i < world->mBufLength; ++i)
 		{
@@ -198,14 +197,27 @@ namespace sc {
 				buf->data[i] = 0;
 			}
 			
-		}*/
+		}
+		 
+		//memcpy(buf->data, world->mAudioBus + (index * world->mBufLength), bufSize); 
+		 */
 		
 		uint32 bufSize = buf->samples * sizeof(float);
-		memcpy(buf->data, world->mAudioBus + (index * world->mBufLength), bufSize);
 		
-		world->mNRTLock->Unlock();
+		try 
+		{
+			world->mNRTLock->Lock();
+			memcpy(buf->data, world->mAudioBus + (index * buf->samples), bufSize);
+			world->mNRTLock->Unlock();
+			
+			return true;
+		}
 		
-		return true;
+		catch(...) 
+		{
+			return false;
+		}
+		
 	}
 	
 	World* InternalSynthServer::getWorld()

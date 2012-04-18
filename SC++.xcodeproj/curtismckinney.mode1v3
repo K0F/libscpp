@@ -252,7 +252,7 @@
 						<dict>
 							<key>PBXSmartGroupTreeModuleColumnWidthsKey</key>
 							<array>
-								<real>243</real>
+								<real>271</real>
 							</array>
 							<key>PBXSmartGroupTreeModuleColumnsKey_v4</key>
 							<array>
@@ -292,16 +292,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>61</integer>
-									<integer>55</integer>
-									<integer>45</integer>
-									<integer>42</integer>
+									<integer>75</integer>
 									<integer>40</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 886}, {243, 640}}</string>
+							<string>{{0, 691}, {271, 640}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -313,19 +310,19 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {260, 658}}</string>
+						<string>{{0, 0}, {288, 658}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>MainColumn</string>
-							<real>243</real>
+							<real>271</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>51 79 1195 699 0 0 1280 778 </string>
+						<string>42 79 1195 699 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
 					<key>Proportion</key>
-					<string>260pt</string>
+					<string>288pt</string>
 				</dict>
 				<dict>
 					<key>Dock</key>
@@ -338,7 +335,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Server.cpp</string>
+								<string>InternalSynthServer.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -346,11 +343,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Server.cpp</string>
+										<string>InternalSynthServer.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3319DD4B1527A50000C6136F</string>
+										<string>3339D8BC153E410F00B741BC</string>
 										<key>history</key>
 										<array>
 											<string>3397619214F33E95000CF640</string>
@@ -367,7 +364,6 @@
 											<string>33C67FF3151F7D2A00FFB55B</string>
 											<string>33C67FF7151F7D2A00FFB55B</string>
 											<string>33C67FF9151F7D2A00FFB55B</string>
-											<string>33C67FFA151F7D2A00FFB55B</string>
 											<string>33C67FFB151F7D2A00FFB55B</string>
 											<string>33C67FFC151F7D2A00FFB55B</string>
 											<string>33C67FFD151F7D2A00FFB55B</string>
@@ -377,7 +373,6 @@
 											<string>33C68001151F7D2A00FFB55B</string>
 											<string>33C6800A151F7D7E00FFB55B</string>
 											<string>33C6800B151F7D7E00FFB55B</string>
-											<string>33C6800C151F7D7E00FFB55B</string>
 											<string>33C6800D151F7D7E00FFB55B</string>
 											<string>33C68010151F7D7E00FFB55B</string>
 											<string>33C68011151F7D7E00FFB55B</string>
@@ -389,7 +384,6 @@
 											<string>33025F97151FA11D00D862C8</string>
 											<string>33025F98151FA11D00D862C8</string>
 											<string>33026020152097C700D862C8</string>
-											<string>33097C3B1520AD8A00CF4F80</string>
 											<string>33097C3C1520AD8A00CF4F80</string>
 											<string>33097C3D1520AD8A00CF4F80</string>
 											<string>33097C3E1520AD8A00CF4F80</string>
@@ -397,18 +391,22 @@
 											<string>33097D781521BB0300CF4F80</string>
 											<string>33097D901521D25900CF4F80</string>
 											<string>33097DBE1521EFC600CF4F80</string>
-											<string>33097DBF1521EFC600CF4F80</string>
 											<string>33097E5B152231AD00CF4F80</string>
-											<string>33097F26152356D700CF4F80</string>
 											<string>33097F411523582F00CF4F80</string>
-											<string>33097F8015235DB500CF4F80</string>
-											<string>332BF02715237B9B0067DEE6</string>
 											<string>332BF02815237B9B0067DEE6</string>
 											<string>332BF02915237B9B0067DEE6</string>
-											<string>332BF02A15237B9B0067DEE6</string>
-											<string>332BF02B15237B9B0067DEE6</string>
-											<string>332BF06C15239F8C0067DEE6</string>
-											<string>3342C3D01524FBD800BAB0CA</string>
+											<string>3309FC571532720300399FA1</string>
+											<string>3309FC581532720300399FA1</string>
+											<string>3309FC591532720300399FA1</string>
+											<string>3309FC5A1532720300399FA1</string>
+											<string>3309FC5B1532720300399FA1</string>
+											<string>3309FC5C1532720300399FA1</string>
+											<string>334320EC15335932000856D3</string>
+											<string>33F3DAE71533A90F00130DF6</string>
+											<string>33F3DAE81533A90F00130DF6</string>
+											<string>3312C8FD153B3B65007C2D78</string>
+											<string>3312C8FE153B3B65007C2D78</string>
+											<string>3312C90B153C3E7A007C2D78</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -420,9 +418,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {930, 639}}</string>
+								<string>{{0, 0}, {902, 639}}</string>
 								<key>RubberWindowFrame</key>
-								<string>51 79 1195 699 0 0 1280 778 </string>
+								<string>42 79 1195 699 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -440,9 +438,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 644}, {930, 14}}</string>
+								<string>{{0, 644}, {902, 14}}</string>
 								<key>RubberWindowFrame</key>
-								<string>51 79 1195 699 0 0 1280 778 </string>
+								<string>42 79 1195 699 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -451,7 +449,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>930pt</string>
+					<string>902pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -466,9 +464,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>3319DD341527A02800C6136F</string>
+				<string>3339D8AF153E288900B741BC</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>3319DD351527A02800C6136F</string>
+				<string>3339D8B0153E288900B741BC</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -612,7 +610,7 @@
 		<string>/Users/curtismckinney/Documents/C++Dev/SC++/SC++.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>51 79 1195 699 0 0 1280 778 </string>
+	<string>42 79 1195 699 0 0 1280 778 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -689,7 +687,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>33E0E06914ED7EBD00831965</string>
-				<string>3319DD361527A02800C6136F</string>
+				<string>3339D8B1153E288900B741BC</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
