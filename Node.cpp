@@ -142,6 +142,7 @@ namespace sc {
 		}
 		
 		packet->EndMsg();
+		return packet;
 	}
 	
 	void Node::setn(uint32 firstIndex, uint32 numIndexes, std::vector<float64> args)
