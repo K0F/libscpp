@@ -440,7 +440,7 @@ namespace sc {
 			for(int i = 0; i < bundSize; ++i)
 			{
 				packet.addtag('i');
-				packet.addi(i);
+				packet.addi(i + pos);
 				packet.addtag('f');
 				packet.addf((float) collection.at(i));
 			}
