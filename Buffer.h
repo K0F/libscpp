@@ -39,10 +39,7 @@ namespace sc {
 		
 		typedef boost::function<void (Buffer* _buffer)> Action;
 		
-		inline void defaultAction(Buffer* _buffer = NULL)
-		{
-			
-		};
+		void defaultAction(Buffer* _buffer) {}; // Nothing
 		
 		// typedefs For setting multiple indexes
 		typedef std::list< std::pair<int, float64> > set_list;
@@ -51,6 +48,8 @@ namespace sc {
 		
 		Buffer(Server* _serve, int _numFrames = 0, 
 			   int _numChannels = 1, int _bufnum = NEGNULL);
+		
+		~Buffer();
 		
 		static Buffer* alloc(Server* _server, int _numFrames, int _numChannels = 1, 
 							 big_scpacket* _completionMessage = NULL, int _bufnum = NEGNULL);
@@ -94,6 +93,8 @@ namespace sc {
 		big_scpacket* readChannelMsg(const char* _path, int _fileStartFrame = 0, int _numFrames = NEGNULL, 
 									 int _bufStartFrame = 0, bool _leaveOpen = false, int _channels = NEGNULL);
 		
+		// NOTE: Wait time NOT implemented currently
+		void sendCollection(std::vector<float64>& collection, int startFrame = 0, float64 wait = 0);		
 				
 		/*
 		readNoUpdate
@@ -102,9 +103,9 @@ namespace sc {
 		cueSoundFile
 		cueSoundFileMsg
 		static Buffer* loadCollection
-		void loadCollection
 		*sendCollection
-		sendCollection
+		*loadCollection
+		loadCollection
 		streamCollection
 		loadToFloatArray
 		getToFloatArray

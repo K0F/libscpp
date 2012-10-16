@@ -133,12 +133,12 @@ namespace sc {
 	
 	uint32 ContiguousBlock::address()
 	{
-		return this->size;
+		return this->start;
 	}
 	
 	bool ContiguousBlock::adjoins(ContiguousBlock* block)
 	{
-		return ((start < block->getStart()) && ((start + size) >= block->getStart()))
+		return ((start < block->getStart()) && ((start + this->size) >= block->getStart()))
 			|| ((start > block->getStart()) && (block->getStart() + block->getSize() >= start));
 	}
 	
@@ -148,7 +148,7 @@ namespace sc {
 		if(adjoins(block))
 		{
 			newStart = std::min(start, block->getStart());
-			newSize = std::max(start + size, block->getStart() + block->getSize()) - newStart;
+			newSize = std::max(start + this->size, block->getStart() + block->getSize()) - newStart;
 			return new ContiguousBlock(newStart, newSize);
 		}
 		
@@ -161,20 +161,20 @@ namespace sc {
 	
 	ContiguousBlock** ContiguousBlock::split(uint32 span)
 	{
-		if(span < size)
+		if(span < this->size)
 		{
 			ContiguousBlock** splitArray = new ContiguousBlock*[2];
 			splitArray[0] = new ContiguousBlock(start, span);
-			splitArray[1] = new ContiguousBlock(start + span, size - span);
+			splitArray[1] = new ContiguousBlock(start + span, this->size - span);
 			return splitArray;
 		}
 		
 		else 
 		{
-			if(span == size)
+			if(span == this->size)
 			{
 				ContiguousBlock** splitArray = new ContiguousBlock*[2];
-				splitArray[0] = new ContiguousBlock(start + span, size - span);
+				splitArray[0] = this;
 				splitArray[1] = NULL;
 				return splitArray;	
 			}
@@ -183,16 +183,14 @@ namespace sc {
 			{
 				return NULL;
 			}
-
 		}
-
 	}
 	
 	uint32* ContiguousBlock::storeArgs()
 	{
 		uint32* args = new uint32[3];
 		args[0] = start;
-		args[1] = size;
+		args[1] = this->size;
 		if(!used)
 			args[2] = 0;
 		else 
@@ -208,7 +206,7 @@ namespace sc {
 	
 	uint32 ContiguousBlock::getSize()
 	{
-		return size;
+		return this->size;
 	}
 	
 	bool ContiguousBlock::getUsed()
@@ -225,20 +223,18 @@ namespace sc {
 	// ContiguousBlockAllocator
 	////////////////////////////
 	
-	ContiguousBlockAllocator::ContiguousBlockAllocator(uint32 _size, uint32 _pos)
+	ContiguousBlockAllocator::ContiguousBlockAllocator(uint32 _size, uint32 _pos) :
+		size(_size),
+		pos(_pos),
+		top(_pos)	
 	{
-		this->size = _size;
-		this->pos = _pos;
-		this->top = _pos;
 		this->array = new ContiguousBlock*[this->size];
-		//this->array = (ContiguousBlock**) malloc(sizeof(ContiguousBlock*) * _size);
-		//this->array = new ContiguousBlock*[this->size];
+		
 		for(int i = 0; i < this->size; ++i)
 		{
 			array[i] = NULL;
 		}
-		//memset(array, NULL, sizeof array);
-		std::cout << "SIZE: " << size << " POS: " << pos << std::endl;
+		
 		array[pos] = new ContiguousBlock(pos, size - pos);
 	}
 	
@@ -247,9 +243,10 @@ namespace sc {
 		for(int i = 0; i < this->size; ++i)
 		{
 			if(array[i]!=NULL)
-				//delete array[i];
-				free(i);
-			//array[i] = NULL;
+			{
+				delete array[i];
+				array[i] = NULL;
+			}
 		}
 		
 		delete[] array;
@@ -261,9 +258,11 @@ namespace sc {
 			std::set<ContiguousBlock*>::iterator setIter = freedIter->second->begin();
 			while(setIter != freedIter->second->end())
 			{
-				delete *setIter;
+				if(*setIter != NULL)
+					delete *setIter;
 				++setIter;
 			}
+			
 			freedIter->second->clear();
 			delete freedIter->second;
 			++freedIter;
@@ -276,6 +275,7 @@ namespace sc {
 	int64 ContiguousBlockAllocator::alloc(uint32 n)
 	{
 		ContiguousBlock* block = findAvailable(n);
+		
 		if(block != NULL)
 		{
 			return prReserve(block->getStart(), n, block)->getStart();
@@ -319,7 +319,7 @@ namespace sc {
 						if(block->getUsed() && (block->getStart() + block->getSize() > address))
 						{
 							std::cout << "The block at (" << address << ", " 
-								<< size << ") is already in used and cannot be reserved.";
+								<< _size << ") is already in used and cannot be reserved.";
 						}
 						
 						else 
@@ -327,10 +327,8 @@ namespace sc {
 							newBlock = prReserve(address, _size, NULL, block);
 							return newBlock;
 						}
-
 					}
 				}
-				
 			}
 		}
 		
@@ -339,76 +337,87 @@ namespace sc {
 	
 	void ContiguousBlockAllocator::free(uint32 address)
 	{
-		ContiguousBlock* block = array[address];
-		ContiguousBlock* prev;
-		ContiguousBlock* next;
-		ContiguousBlock* temp;
-		
-		
-		if(block != NULL)
+		if(address < size - 1)
 		{
-			if(block->getUsed())
+			
+			if(array[address] != NULL)
 			{
-				block->setUsed(false);
-				addToFreed(block);
-				prev = findPrevious(address);
+				ContiguousBlock* block = array[address];
+				ContiguousBlock* prev;
+				ContiguousBlock* next;
+				ContiguousBlock* temp;
 				
-				if(prev != NULL)
+				prev = next = temp = NULL;
+								
+				if(block->getUsed())
 				{
-					if(!prev->getUsed())
+					block->setUsed(false);
+					addToFreed(block);
+					prev = findPrevious(address);
+					
+					
+					if(prev != NULL)
 					{
-						temp = prev->join(block);
-						if(temp != NULL)
+						if(!prev->getUsed())
 						{
-							if(block->getStart() == top)
+							temp = prev->join(block);
+							if(temp != NULL)
 							{
-								top = temp->getStart();
+								if(block->getStart() == top)
+								{
+									top = temp->getStart();
+								}
+								
+								array[temp->getStart()] = temp;
+								array[block->getStart()] = NULL;
+								removeFromFreed(prev);
+								removeFromFreed(block);
+								
+								if(top > temp->getStart())
+								{
+									addToFreed(temp);
+								}
+								
+								block = temp;
 							}
-							array[temp->getStart()] = temp;
-							array[block->getStart()] = NULL;
-							removeFromFreed(prev);
-							removeFromFreed(block);
-							if(top > temp->getStart())
-							{
-								addToFreed(temp);
-							}
-							block = temp;
 						}
 					}
-				}
-				
-				next = findNext(block->getStart());
-				if(next != NULL)
-				{
-					if(!next->getUsed())
+					
+					next = findNext(block->getStart());
+					if(next != NULL)
 					{
-						temp = next->join(block);
-						if(temp != NULL)
+						if(!next->getUsed())
 						{
-							if(next->getStart() == top)
-							{
-								top = temp->getStart();
-							}
+							temp = next->join(block);
 							
-							array[temp->getStart()] = temp;
-							array[next->getStart()] = NULL;
-							removeFromFreed(next);
-							removeFromFreed(block);
-							if(top > temp->getStart())
+							if(temp != NULL)
 							{
-								addToFreed(temp);
+								if(next->getStart() == top)
+								{
+									top = temp->getStart();
+								}
+								
+								array[temp->getStart()] = temp;
+								array[next->getStart()] = NULL;
+								removeFromFreed(next);
+								removeFromFreed(block);
+								
+								if(top > temp->getStart())
+								{
+									addToFreed(temp);
+								}
 							}
 						}
 					}
 				}
 			}
 		}
-		
 	}
 	
 	std::vector<ContiguousBlock*> ContiguousBlockAllocator::blocks()
 	{
 		std::vector<ContiguousBlock*> blocks;
+		
 		for(int i = 0; i < this->size; ++i)
 		{
 			if(array[i] != NULL)
@@ -423,13 +432,16 @@ namespace sc {
 	
 	ContiguousBlock* ContiguousBlockAllocator::findAvailable(uint32 n)
 	{
-		if(freed[n]->size() > 0)
+		if(freed.find(n) != freed.end())
 		{
-			for(std::set<ContiguousBlock*>::iterator iter = freed[n]->begin();
-				iter != freed[n]->end(); ++iter)
+			if(freed[n]->size() > 0)
 			{
-				if(*iter != NULL)
-					return *iter;
+				for(std::set<ContiguousBlock*>::iterator iter = freed[n]->begin();
+					iter != freed[n]->end(); ++iter)
+				{
+					if(*iter != NULL)
+						return *iter;
+				}
 			}
 		}
 		
@@ -445,6 +457,7 @@ namespace sc {
 						return *iter;
 				}
 			}
+			
 			++freedIter;
 		}
 		
@@ -454,8 +467,9 @@ namespace sc {
 		}
 		
 		else
+		{
 			return array[top];
-
+		}
 	}
 	
 	void ContiguousBlockAllocator::addToFreed(ContiguousBlock* block)
@@ -473,32 +487,47 @@ namespace sc {
 	
 	void ContiguousBlockAllocator::removeFromFreed(ContiguousBlock* block)
 	{
-		std::set<ContiguousBlock*>::iterator setIter = freed[block->getSize()]->begin();
-		while(setIter != freed[block->getSize()]->end())
+		if(freed.find(block->getSize()) != freed.end())
 		{
-			delete *setIter;
-			++setIter;
+			std::set<ContiguousBlock*>::iterator setIter = freed[block->getSize()]->begin();
+			
+			while(setIter != freed[block->getSize()]->end())
+			{
+				delete *setIter;
+				++setIter;
+			}
+			
+			freed[block->getSize()]->clear();
+			delete freed[block->getSize()];
+			freed[block->getSize()] = NULL;
+			freed.erase(block->getSize());
 		}
-		freed[block->getSize()]->clear();
-		delete freed[block->getSize()];
-		freed[block->getSize()] = NULL;
-		freed.erase(block->getSize());
 	}
 	
 	ContiguousBlock* ContiguousBlockAllocator::findPrevious(uint32 address)
 	{
-		for(int i = address-1; i >= this->pos; --i)
+		if(address == pos)
 		{
-			if(array[i] != NULL)
-				return array[i];
+			return NULL;
 		}
 		
-		return NULL;
+		else {
+			
+			for(int i = address - 1; i >= this->pos; --i)
+			{
+				if(array[i] != NULL)
+					return array[i];
+			}
+			
+			return NULL;
+			
+		}
 	}
 	
 	ContiguousBlock* ContiguousBlockAllocator::findNext(uint32 address)
 	{
 		ContiguousBlock* temp = array[address];
+		
 		if(temp != NULL)
 		{
 			return array[temp->getStart() + temp->getSize()];
@@ -506,7 +535,7 @@ namespace sc {
 		
 		else 
 		{
-			for(int i = address; i <= this->top; ++i)
+			for(int i = address + 1; i <= this->top; ++i)
 			{
 				if(array[i] != NULL)
 				{
@@ -521,11 +550,12 @@ namespace sc {
 	ContiguousBlock* ContiguousBlockAllocator::prReserve(uint32 address, uint32 _size, ContiguousBlock* availBlock, 
 														 ContiguousBlock* prevBlock)
 	{
-		//ContiguousBlock* newBlock; // Unused in SuperCollider class
 		ContiguousBlock* leftover;
 		
 		if(availBlock == NULL && prevBlock == NULL)
+		{
 			prevBlock = findPrevious(address);
+		}
 		
 		if(availBlock == NULL)
 			availBlock = prevBlock;
@@ -537,7 +567,7 @@ namespace sc {
 			availBlock = split[1];
 		}
 		
-		return prSplit(availBlock, this->size, true)[0];	
+		return prSplit(availBlock, _size, true)[0];	
 	}
 	
 	ContiguousBlock** ContiguousBlockAllocator::prSplit(ContiguousBlock* availBlock, uint32 n, bool used)
@@ -546,8 +576,9 @@ namespace sc {
 		ContiguousBlock* newBlock = split[0];
 		ContiguousBlock* leftover = split[1];
 		
-		newBlock->setUsed(true);
+		newBlock->setUsed(used);
 		removeFromFreed(availBlock);
+		
 		if(!used)
 		{
 			addToFreed(newBlock);
@@ -559,15 +590,18 @@ namespace sc {
 		{
 			array[leftover->getStart()] = leftover;
 			top = std::max(top, leftover->getStart());
+			
 			if(top > leftover->getStart())
 			{
 				addToFreed(leftover);
 			}
 		}
 		
-		split[0] = newBlock;
-		split[1] = leftover;
-		return split;
+		ContiguousBlock** newSplit = new ContiguousBlock*[2];
+		newSplit[0] = newBlock;
+		newSplit[1] = leftover;
+		
+		return newSplit;
 	}
 	
 	void ContiguousBlockAllocator::debug(const char* text)

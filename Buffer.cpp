@@ -5,6 +5,7 @@
  *  Created by Chad McKinney on 3/18/12.
  *
  */
+#include <cmath>
 #include <iostream>
 #include <string>
 
@@ -28,6 +29,11 @@ namespace sc {
 		
 		sampleRate = server->getSampleRate();
 
+	}
+	
+	Buffer::~Buffer()
+	{
+		free();
 	}
 	
 	Buffer* Buffer::alloc(Server* _server, int _numFrames, int _numChannels, big_scpacket* _completionMessage, 
@@ -399,6 +405,55 @@ namespace sc {
 		msg = NULL;
 	}
 	
+	void Buffer::sendCollection(std::vector<float64>& collection, int startFrame, float64 wait)
+	{
+		if(collection.size() > ((numFrames - startFrame) * numChannels))
+			std::cerr << "Collection larger than available number of frames" << std::endl;
+		
+		int pos = startFrame;
+		
+		while(pos < collection.size() - 1)
+		{
+			// std::cout << "Buffer::sendCollection() pos: " << pos << std::endl;
+			// 1026 is the max size for setn under udp
+			int bundSize = std::min(1026 / 2, (int) collection.size() - pos);
+			
+			big_scpacket packet;
+			packet.BeginMsg();
+			packet.addi(b_set);
+			packet.maketags(2 + (bundSize * 2));
+			packet.addtag(',');
+			packet.addtag('i');
+			packet.addi(bufnum);
+			// packet.addtag('i');
+			// packet.addi(pos);
+			// packet.addtag('i');
+			// packet.addi(bundSize);
+			// packet.addtag('b');
+			
+			// big_scpacket packet2; // Bundle for our array
+			// packet2.OpenBundle(1); // 1 = immediate
+			// packet2.BeginMsg();
+			// packet2.maketags(bundSize + 1);
+			// packet2.addtag(',');
+			
+			for(int i = 0; i < bundSize; ++i)
+			{
+				packet.addtag('i');
+				packet.addi(i);
+				packet.addtag('f');
+				packet.addf((float) collection.at(i));
+			}
+			
+			// packet2.EndMsg();
+			// packet2.CloseBundle();
+			// packet.addb((uint8*) packet2.data(), packet2.size());
+			packet.EndMsg();
+			server->sendMsg(&packet);
+			pos += bundSize;
+		}
+	}
+	
 	big_scpacket* Buffer::writeMsg(const char* path, const char* headerFormat, const char* sampleFormat, 
 						   uint32 numFrames, uint32 startFrame, uint32 leaveOpen, 
 						   big_scpacket* _completionMessage)
@@ -508,6 +563,8 @@ namespace sc {
 	
 	big_scpacket* Buffer::freeMsg(big_scpacket* _completionMessage)
 	{
+		server->getBufferAllocator()->free(bufnum);
+		
 		uint8* data;
 		size_t len;
 		uint32 packetLength;
