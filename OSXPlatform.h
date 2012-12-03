@@ -11,6 +11,8 @@
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
+#ifdef __APPLE__
+
 #include "Platform.h"
 
 namespace sc {
@@ -33,5 +35,7 @@ namespace sc {
 	};
 	
 };
+
+#endif
 
 #pragma GCC visibility pop

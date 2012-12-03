@@ -48,8 +48,12 @@ namespace sc {
 		
 		World* getWorld();
 		void setWorldOptions(WorldOptions _options);
-		
+
+#ifdef __APPLE__
 		CFStringRef synthName;
+#else
+        std::string synthName;
+#endif
 		int portNum;
 		
 	private:
@@ -63,7 +67,11 @@ namespace sc {
 		};
 		
 		WorldOptions options;
-		CFStringRef pluginsPath, synthdefsPath;
+#ifdef __APPLE__
+        CFStringRef pluginsPath, synthdefsPath;
+#else
+        std::string pluginsPath, synthdefsPath;
+#endif
 		int preferredPort;
 		World* world;
 		InternalSynthServerGlobals gInternalSynthServer;

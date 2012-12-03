@@ -19,8 +19,11 @@
 #ifndef _OSCMessages_
 #define _OSCMessages_
 #include "scsynthsend.h"
+#ifdef __APPLE__
 #include <CoreFoundation/CFString.h>
-
+#else
+#include <string>
+#endif
 static int kDefaultNodeId = 1000;
 
 class OSCMessages   {
@@ -28,8 +31,12 @@ class OSCMessages   {
 			OSCMessages();
 			char* initTree;
 			char* synthDef;
-			size_t parameterMessage(small_scpacket *packet,CFStringRef name, float value);
+#ifdef __APPLE__
+            size_t parameterMessage(small_scpacket *packet,CFStringRef name, float value);
             size_t createSynthMessage(small_scpacket *packet, CFStringRef name);
+#endif
+            size_t parameterMessage(small_scpacket *packet, std::string name, float value);
+            size_t createSynthMessage(small_scpacket *packet, std::string name);
             small_scpacket sendTickMessage(int64 oscTime, int bus);
 			small_scpacket initTreeMessage();
             small_scpacket quitMessage();

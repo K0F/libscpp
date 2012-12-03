@@ -11,6 +11,7 @@
 #pragma GCC visibility push(default)
 
 #include <math.h>
+#include <stdlib.h>
 
 #include "sc.h"
 
@@ -103,7 +104,7 @@ namespace sc {
 	template<class T>
 	inline T randomRange(T minValue, T maxValue)
 	{
-		return minValue + (rand() % (T)(maxValue - minValue + 1));
+        return minValue + (rand() % (T)(maxValue - minValue + 1));
 	}
 }
 

@@ -20,7 +20,10 @@
 #include "OSCMessages.h"
 OSCMessages::OSCMessages(){ }
 
-size_t OSCMessages::parameterMessage(small_scpacket *packet, CFStringRef name, float value){
+#ifdef __APPLE__
+
+size_t OSCMessages::parameterMessage(small_scpacket *packet, CFStringRef name, float value)
+{
     packet->reset();
     CFIndex bufLength = CFStringGetMaximumSizeForEncoding(CFStringGetLength(name), kCFStringEncodingUTF8) + 1;
     char* buf = (char*) malloc(bufLength);
@@ -40,8 +43,63 @@ size_t OSCMessages::parameterMessage(small_scpacket *packet, CFStringRef name, f
     return messageSize;
 }
 
+size_t OSCMessages::createSynthMessage(small_scpacket *packet, CFStringRef name)
+{
+    packet->reset();
+    CFIndex bufLength = CFStringGetMaximumSizeForEncoding(CFStringGetLength(name), kCFStringEncodingUTF8) + 1;
+    char* buf = (char*) malloc(bufLength);
+    CFStringGetCString(name, buf, bufLength, kCFStringEncodingUTF8);
+    size_t nameSize = ((strlen(buf)+ 4) >> 2)*4;
+    size_t messageSize = nameSize+16;
+    packet->adds("/s_new");
+    packet->maketags(3);
+    packet->addtag(',');
+    packet->addtag('s');
+    packet->adds(buf);
+    packet->addtag('i');
+    packet->addi(kDefaultNodeId);
+    free (buf);
+    return messageSize;
+}
 
-small_scpacket OSCMessages::sendTickMessage(int64 oscTime, int bus){
+#else
+size_t parameterMessage(small_scpacket *packet, std::string name, float value)
+{
+    packet->reset();
+    size_t nameSize = ((strlen(name.c_str())+ 4) >> 2)*4;
+    size_t messageSize = nameSize + 24;
+    packet->adds("/n_set");
+    packet->maketags(4);
+    packet->addtag(',');
+    packet->addtag('i');
+    packet->addi(kDefaultNodeId);
+    packet->addtag('s');
+    packet->adds(name.c_str());
+    packet->addtag('f');
+    packet->addf(value);
+    return messageSize;
+}
+
+size_t createSynthMessage(small_scpacket *packet, std::string name)
+{
+    packet->reset();
+    size_t nameSize = ((strlen(name.c_str())+ 4) >> 2)*4;
+    size_t messageSize = nameSize+16;
+    packet->adds("/s_new");
+    packet->maketags(3);
+    packet->addtag(',');
+    packet->addtag('s');
+    packet->adds(name.c_str());
+    packet->addtag('i');
+    packet->addi(kDefaultNodeId);
+    return messageSize;
+}
+
+#endif
+
+
+small_scpacket OSCMessages::sendTickMessage(int64 oscTime, int bus)
+{
     small_scpacket packet;
     packet.OpenBundle(oscTime);
 	packet.BeginMsg();
@@ -58,7 +116,8 @@ small_scpacket OSCMessages::sendTickMessage(int64 oscTime, int bus){
 }
 
 
-small_scpacket OSCMessages::initTreeMessage(){
+small_scpacket OSCMessages::initTreeMessage()
+{
 	small_scpacket packet;
 	packet.adds("/g_new");
 	packet.maketags(2);
@@ -68,32 +127,15 @@ small_scpacket OSCMessages::initTreeMessage(){
     return packet;
 }
 
-small_scpacket OSCMessages::quitMessage(){
+small_scpacket OSCMessages::quitMessage()
+{
 	small_scpacket packet;
 	packet.adds("/quit");
     return packet;
 }
 
-
-size_t OSCMessages::createSynthMessage(small_scpacket *packet, CFStringRef name){
-	packet->reset();
-    CFIndex bufLength = CFStringGetMaximumSizeForEncoding(CFStringGetLength(name), kCFStringEncodingUTF8) + 1;
-    char* buf = (char*) malloc(bufLength);
-	CFStringGetCString(name, buf, bufLength, kCFStringEncodingUTF8);
-    size_t nameSize = ((strlen(buf)+ 4) >> 2)*4;
-    size_t messageSize = nameSize+16;
-	packet->adds("/s_new");
-	packet->maketags(3);
-	packet->addtag(',');
-	packet->addtag('s');
-	packet->adds(buf);
-	packet->addtag('i');
-	packet->addi(kDefaultNodeId);
-    free (buf);
-    return messageSize;
-}
-
-small_scpacket OSCMessages::noteMessage(int64 oscTime, int note, int velocity){
+small_scpacket OSCMessages::noteMessage(int64 oscTime, int note, int velocity)
+{
     small_scpacket packet;
     packet.OpenBundle(oscTime);
 

@@ -49,7 +49,7 @@ namespace sc {
 		blockSize = 512;
 		portNum = 57110;
 		mNumPrivateAudioBusChannels = 112;
-		
+#ifdef __APPLE__
 		// Generate default paths
 		FSRef ref;
 		OSType folderType = kApplicationSupportFolderType;
@@ -61,6 +61,13 @@ namespace sc {
 		strcat(userPath, synthdefs);
 		synthDefPath = userPath;
 		pluginPath = "/Applications/SuperCollider/SuperCollider.app/Contents/Resources/plugins";
+#elif __LINUX__
+        synthDefPath = "./synthdefs";
+        pluginPath = "./plugins";
+#else
+        synthDefPath = "./synthdefs";
+        pluginPath = "./plugins";
+#endif
 	}
 	
 	uint32 ServerOptions::firstPrivateBus()

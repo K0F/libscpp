@@ -13,7 +13,9 @@
 #include <map>
 //#include "boost/unordered_map.hpp"
 #include <vector>
+#ifdef __APPLE__
 #include <CoreServices/CoreServices.h>
+#endif
 
 #include "sc.h"
 #include "NetAddr.h"

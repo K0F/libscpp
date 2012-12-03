@@ -25,9 +25,12 @@ namespace sc {
 		delete platform;
 	}
 	*/
-	
+#ifdef __APPLE__
 	Platform* Main::platform = new OSXPlatform();
-	
+#elif __LINUX__
+    Platform* Main::platform = new UnixPlatform();
+#endif
+
 	void Main::startup()
 	{
 		// setup the platform first so that class initializers can call platform methods.

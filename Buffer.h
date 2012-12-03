@@ -39,7 +39,7 @@ namespace sc {
 		
 		typedef boost::function<void (Buffer* _buffer)> Action;
 		
-		void defaultAction(Buffer* _buffer) {}; // Nothing
+        void defaultAction(Buffer* _buffer) {} // Nothing
 		
 		// typedefs For setting multiple indexes
 		typedef std::list< std::pair<int, float64> > set_list;

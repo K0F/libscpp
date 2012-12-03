@@ -6,6 +6,8 @@
  *
  */
 
+
+#ifdef __APPLE__
 #include <CoreServices/CoreServices.h>
 #include "OSXPlatform.h"
 
@@ -62,3 +64,5 @@ namespace sc {
 	}
 	
 }
+
+#endif

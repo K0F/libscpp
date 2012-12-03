@@ -26,9 +26,14 @@ namespace sc {
 		gInternalSynthServer.mSharedControls = gDefaultSharedControls;
 		gInternalSynthServer.mPluginsPath = _pluginsPath;
 		gInternalSynthServer.mSynthDefsPath = _synthdefsPath;
-		
+
+#ifdef __APPLE__
 		pluginsPath = CFStringCreateWithCString(NULL, _pluginsPath, kCFStringEncodingASCII);
 		synthdefsPath = CFStringCreateWithCString(NULL, _synthdefsPath, kCFStringEncodingASCII);
+#else
+        pluginsPath = _pluginsPath;
+        synthdefsPath = _synthdefsPath;
+#endif
 	}
 	
 	InternalSynthServer::~InternalSynthServer()
@@ -79,14 +84,21 @@ namespace sc {
 			options.mUGensPluginPath = gInternalSynthServer.mPluginsPath;
 			//gInternalSynthServer.mWorld = World_New(&options);
 			pthread_t scThread;
-			char stringBuffer[PATH_MAX];
-			OSCMessages messages;
+            OSCMessages messages;
+
+#ifdef __APPLE__
+            char stringBuffer[PATH_MAX];
+
 			
 			CFStringGetCString(pluginsPath, stringBuffer, sizeof(stringBuffer), kCFStringEncodingUTF8);
 			setenv("SC_PLUGIN_PATH", stringBuffer, 1);
 			
 			CFStringGetCString(synthdefsPath, stringBuffer, sizeof(stringBuffer), kCFStringEncodingUTF8);
 			setenv("SC_SYNTHDEF_PATH", stringBuffer, 1);
+#else
+            setenv("SC_PLUGIN_PATH", pluginsPath.c_str(), 1);
+            setenv("SC_SYNTHDEF_PATH", synthdefsPath.c_str(), 1);
+#endif
 			
 			this->portNum = findNextFreeUdpPort(preferredPort);
 			//this->portNum = preferredPort;
@@ -142,7 +154,8 @@ namespace sc {
 		setsockopt( server_socket, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
 		
 		while (bind(server_socket, (struct sockaddr *)&mBindSockAddr, sizeof(mBindSockAddr)) < 0) {
-			if(--numberOfTries <0 || (errno != EADDRINUSE)) {
+            if(--numberOfTries < 0) {
+            //if(--numberOfTries <0 || (errno != EADDRINUSE)) {
 				scprintf("unable to bind udp socket\n");
 				return -1;
 			}
