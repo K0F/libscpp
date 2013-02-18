@@ -17,7 +17,8 @@ namespace sc {
 	enum OperatingSystem {
 		PLATFORM,
 		UNIX,
-		OSX
+        OSX,
+        LINUX
 	};
 	
 	class Platform {

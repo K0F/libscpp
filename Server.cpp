@@ -114,6 +114,7 @@ namespace sc {
 	std::map<const char*, Server*> Server::named = std::map<const char*, Server*>();
 	Server* Server::internal = NULL;
 	Group* Server::defaultGroup = NULL;
+    const char* Server::program = "exec scsynth";
 	
 	Server::Server(ServerOptions _options) :
 		name("internal"),

@@ -10,7 +10,11 @@
 #include "Main.h"
 #include "Server.h"
 #include "Platform.h"
+#ifdef __APPLE__
 #include "OSXPlatform.h"
+#elif __LINUX__
+#include "LinuxPlatform.h"
+#endif
 
 namespace sc {
 
@@ -28,7 +32,7 @@ namespace sc {
 #ifdef __APPLE__
 	Platform* Main::platform = new OSXPlatform();
 #elif __LINUX__
-    Platform* Main::platform = new UnixPlatform();
+    Platform* Main::platform = new LinuxPlatform();
 #endif
 
 	void Main::startup()
@@ -41,7 +45,7 @@ namespace sc {
 		//Main::platform = new OSXPlatform(); // CURRENTLY WE ONLY WORK ON OSX
 		//Main::platform->initPlatform();
 		
-		Process::startup();
+        // Process::startup();
 		Main::platform->startup();
 	}
 	

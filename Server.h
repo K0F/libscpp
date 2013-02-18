@@ -263,7 +263,7 @@ namespace sc {
 		void setRecHeaderFormat(const char* _recHeaderFormat);
 		const char* getRecSampleFormat();
 		void setRecSampleFormat(const char* _recSampleFormat);
-		uint32 getRecChannels();
+        uint32 getRecChannels();
 		void setRecChannels(uint32 _recChannels);
 		int32 getPid();
 		
@@ -275,6 +275,7 @@ namespace sc {
 		static Server* internal;
 		static Group* defaultGroup;
 		static bool sync_s;
+        static const char* program;
 		
 		uint32 getPortNum();
 		void setPortNum(uint32 _portNum);

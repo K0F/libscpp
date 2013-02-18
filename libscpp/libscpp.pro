@@ -54,8 +54,8 @@ LIBS += $${FFTWF}/libfftw3f.a
 PRE_TARGETDEPS += $${FFTWF}/libfftw3f.a
 
 # Jack
-LIBS += $${JACK}/libjack.a
-PRE_TARGETDEPS += $${JACK}/libjack.a
+LIBS += $${JACK}/libjack.so
+PRE_TARGETDEPS += $${JACK}/libjack.so
 
 # FLAC
 LIBS += $${FLAC}/libFLAC.a
@@ -152,7 +152,8 @@ SOURCES += \
     ../Clock.cpp \
     ../Bus.cpp \
     ../Buffer.cpp \
-    ../AbstractFunction.cpp
+    ../AbstractFunction.cpp \
+    ../LinuxPlatform.cpp
 
 HEADERS += \
     ../Thread.h \
@@ -181,7 +182,8 @@ HEADERS += \
     ../Clock.h \
     ../Bus.h \
     ../Buffer.h \
-    ../AbstractFunction.h
+    ../AbstractFunction.h \
+    ../LinuxPlatform.h
 
 OTHER_FILES += \
     QMakeVars.pri
