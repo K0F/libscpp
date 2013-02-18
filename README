@@ -13,8 +13,8 @@ This is an extremely early version that is concurrently undergoing active and he
 PREREQUISITES
 =============
 
-SuperCollider Source: currently tested against SC 3.5 for OS X.
-Boost: Version 1.49 (not just the header only library, but also the libraries). 
+SuperCollider Source: currently tested against SC 3.5 and 3.6 for OS X and Linux.
+Boost: Version 1.49 (not just the header only library, but also the built static libraries). 
 
 
 Be sure that your program is correctly linking to these:
@@ -36,10 +36,18 @@ ibboost_date_time.a, libsclang.a, and libscsynth.dylib, and a precompiled libsc+
 
 SC Source:
 
-http://sourceforge.net/projects/supercollider/files/Source/3.5.0/
+http://supercollider.sourceforge.net/downloads/
 
 Boost:
 http://www.boost.org/
+
+========
+BUILDING
+========
+
+There are two options for building libsc++. The first is to use the provided XCode project file, however this is falling out of favor as I've moved to linux and may not be completely up to date. The preferred choice is to use the QtCreator .pro file. This project uses no Qt libraries and your program won't have such dependancies. QtCreator has always been my preferred IDE for C++ development and since my move to linux I've now converted all my projects over. 
+
+Building SuperCollider for libsc++ requires some specific tweaks. To make things easier you should use cmake-gui so you can quickly find all the arguments you need to set. You should build a special version (not for personal SC usage) that is built with no Qt, no Avahi, with the native flag checked, as RELEASE, and NO SCIDE. If you would like to statically link to libsc++ you'll need to include several dependancies in your program (reference the .pro file see a full list), and you'll need to make sure to build SuperCollider WITHOUT the libscynth option checked (by default SC builds against static libs). In general this build process is complicated and unless you're familiar with building SC you may find it (too) difficult. Best of luck! 
 
 =======
 USAGE
@@ -80,8 +88,13 @@ server->record();
 É(do stuff)
 server->stopRecording();
 
-This will drop it by default into the SuperCollider recordings  path: 
+This will drop it by default into the SuperCollider recordings  path, for example on OS X: 
 /Users/USER_NAME/Music/SuperCollider\ Recordings
+
+========
+STATUS
+=======
+libsc++ is a project mainly used by myself and members of my band Glitch Lich (www.glitchlich.com), however I've released it as open source along with all my other software in the hopes other may find it useful as well. That said, it's not the cleanest of projects and other developers may find it somewhat lacking in documentation. I would welcome external help to develop a more user friendly and extensive library, but as it stands development mainly focuses on the needs of my personal projects and will see continued, if not sporadic development for the foreseeable future.
 
 =======
 License
