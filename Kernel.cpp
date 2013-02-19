@@ -46,7 +46,8 @@ namespace sc {
 	
 	double Process::elapsedTime()
 	{
-		return elapsedTime();
+        // return elapsedTime(); infinite recursion!
+        return 0; // just something to return until this gets worked out...
 	}
 	
 	///////////////
