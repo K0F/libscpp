@@ -9,7 +9,8 @@ namespace sc {
 
 LinuxPlatform::LinuxPlatform() : UnixPlatform()
 {
-
+    recordingsDir = getenv("HOME");
+    recordingsDir.append("/.local/share/SuperCollider/Recordings");
 }
 
 void LinuxPlatform::initPlatform()
@@ -29,8 +30,9 @@ void LinuxPlatform::setClassLibraryDir(const char* _dir)
 
 const char* LinuxPlatform::getRecordingsDir()
 {
-    return UnixPlatform::getRecordingsDir();
+    return recordingsDir.c_str();
 }
+
 void LinuxPlatform::setRecordingsDir(const char* _dir)
 {
     UnixPlatform::setRecordingsDir(_dir);

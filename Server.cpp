@@ -746,8 +746,7 @@ namespace sc {
 			};
 			*/
 			
-			//path = thisProcess.getPlatform()->getRecordingsDir();
-			
+            // path = sc::recordingsDir();
 		}
 		
 		//big_scpacket* recordMsg = Buffer::staticWriteMsg(this->options.numBuffers() + 1, 
