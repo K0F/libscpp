@@ -6,6 +6,11 @@ CONFIG += staticlib
 
 include(./QMakeVars.pri)
 
+INCLUDEPATH += customboost/
+DEPENDPATH += customboost/
+INCLUDEPATH += /
+DEPENDPATH += /
+
 # BUILD SUPERCOLLIDER WITH NO QT, NO AVAHI, AND AS STATIC LIBS!!!!!!!!!!!!#########################################
 # Supercollider vars ##############################################################################################
 # DEFINE THESE IN QMakeVars.pri, CHANGING THEM TO YOUR LOCAL DIRECTORIES
@@ -38,6 +43,9 @@ PRE_TARGETDEPS += $${LIBSCSYNTH}/libscsynth.a
 #boost
 LIBS += $${BOOST_LIBS}/libboost_date_time.a
 PRE_TARGETDEPS += $${BOOST_LIBS}/libboost_date_time.a
+
+LIBS += $${BOOST_LIBS}/libboost_signals.a
+PRE_TARGETDEPS += $${BOOST_LIBS}/libboost_signals.a
 
 # Libsndfile
 LIBS += $${LIBSNDFILE}/libsndfile.a
@@ -80,7 +88,6 @@ linux-g++ {
     DEFINES += __LINUX__
     DEFINES += SC_AUDIO_API=SC_AUDIO_API_JACK
 }
-
 
 
 INCLUDEPATH += $${SUPERCOLLIDER_SOURCE}/include/common \
@@ -153,7 +160,9 @@ SOURCES += \
     ../Bus.cpp \
     ../Buffer.cpp \
     ../AbstractFunction.cpp \
-    ../LinuxPlatform.cpp
+    ../LinuxPlatform.cpp \
+    ../scprocess.cpp \
+    ../process.cpp
 
 HEADERS += \
     ../Thread.h \
@@ -183,7 +192,10 @@ HEADERS += \
     ../Bus.h \
     ../Buffer.h \
     ../AbstractFunction.h \
-    ../LinuxPlatform.h
+    ../LinuxPlatform.h \
+    ../scprocess.h \
+    ../process.h \
+    ../externals/pstreams-0.7.0/pstream.h
 
 OTHER_FILES += \
     QMakeVars.pri
