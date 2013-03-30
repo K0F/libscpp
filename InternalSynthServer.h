@@ -34,10 +34,7 @@ namespace sc {
 	extern void localServerReplyFunc(struct ReplyAddress *inReplyAddr, char* inBuf, int inSize);
     typedef boost::function<void ()> server_reply_func_t;
 
-    void nullCallback()
-    {
-
-    }
+    void nullCallback();
 	
 	class InternalSynthServer {
 	

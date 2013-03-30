@@ -15,6 +15,11 @@ namespace sc {
 
     server_reply_func_t bootCallback;
 
+    void nullCallback()
+    {
+
+    }
+
 	InternalSynthServer::InternalSynthServer(WorldOptions _options, const char* _pluginsPath,  
 											 const char* _synthdefsPath, int _preferredPort) :
 		options(_options),
