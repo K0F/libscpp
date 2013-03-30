@@ -26,10 +26,18 @@
 #include "SC_AU.h"
 #include "SC_SndBuf.h"
 
+#include <boost/function.hpp>
+
 namespace sc {
 
 	
 	extern void localServerReplyFunc(struct ReplyAddress *inReplyAddr, char* inBuf, int inSize);
+    typedef boost::function<void ()> server_reply_func_t;
+
+    void nullCallback()
+    {
+
+    }
 	
 	class InternalSynthServer {
 	
@@ -41,7 +49,7 @@ namespace sc {
 		
 		~InternalSynthServer();
 		
-		void boot();
+        void boot(server_reply_func_t callback);
 		void quit();
 		void sendMsg(big_scpacket* packet);
 		bool getScopeBuf(uint32 index, SndBuf* buf);

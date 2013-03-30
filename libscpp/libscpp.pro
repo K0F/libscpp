@@ -11,8 +11,12 @@ DEPENDPATH += customboost/
 INCLUDEPATH += /
 DEPENDPATH += /
 
-# BUILD SUPERCOLLIDER WITH NO QT, NO AVAHI, AND AS STATIC LIBS!!!!!!!!!!!!#########################################
-# Supercollider vars ##############################################################################################
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# BUILD SUPERCOLLIDER WITH NO QT, NO AVAHI, AND MAKE SURE YOU HAVE LIBREADLINE INSTALLED BEFORE BUILDING SUPERCOLLIDER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+###################################################################################################################
+# Supercollider qmake variables
 # DEFINE THESE IN QMakeVars.pri, CHANGING THEM TO YOUR LOCAL DIRECTORIES
 # SUPERCOLLIDER_SOURCE
 # LIBSCSYNTH

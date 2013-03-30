@@ -378,18 +378,18 @@ namespace sc {
 		sendMsg(&packet);
 	}
 	
-	void Server::boot(bool startAliveThread, bool recover, Server::BootFailHandler* onFail)
+    void Server::boot(server_reply_func_t callback)
 	{
 		// serverBooting = true;
 		if(!remoteControlled)
 		{
-			bootServerApp();
+            bootServerApp(callback);
 		}
 	}
 	
-	void Server::bootServerApp()
+    void Server::bootServerApp(server_reply_func_t callback)
 	{
-		scsynth->boot();
+        scsynth->boot(callback);
 		initTree();
 	}
 	

@@ -13,6 +13,8 @@
 
 namespace sc {
 
+    server_reply_func_t bootCallback;
+
 	InternalSynthServer::InternalSynthServer(WorldOptions _options, const char* _pluginsPath,  
 											 const char* _synthdefsPath, int _preferredPort) :
 		options(_options),
@@ -50,12 +52,13 @@ namespace sc {
 		return 0;
 	}
 	
-	void null_reply_func(struct ReplyAddress* /*addr*/, char* /*msg*/, int /*size*/) {
-		
+    void reply_func(struct ReplyAddress* /*addr*/, char* /*msg*/, int /*size*/) {
+        bootCallback();
 	}
 	
-	void InternalSynthServer::boot()
+    void InternalSynthServer::boot(server_reply_func_t callback)
 	{
+        bootCallback = callback;
 		
 		if (!world) {
 			//SetPrintFunc(&vpost);
@@ -123,7 +126,7 @@ namespace sc {
 		OSCMessages messages;
 		if (world && world->mRunning){
 			small_scpacket packet = messages.quitMessage();
-			World_SendPacket(world, 8,(char*)packet.buf, null_reply_func);
+            World_SendPacket(world, 8,(char*)packet.buf, reply_func);
 		}
 	}
 	
