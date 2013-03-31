@@ -266,6 +266,7 @@ namespace sc {
 		//sendMsg(g_new, 1, 0, 0);
 		this->mRootNode = new RootNode(this);
 		this->mDefaultGroup = new Group(mRootNode, addToHead, 1);
+        Server::defaultGroup = this->mDefaultGroup;
 		//sendMsg("/g_new", 1, 0, 0); We Will Create the root group directly ourselves
 		//tree.value(this); ...???!?
 		//ServerTree::run(this); Not Implemented Yet
@@ -378,18 +379,18 @@ namespace sc {
 		sendMsg(&packet);
 	}
 	
-    void Server::boot(server_reply_func_t callback)
+    void Server::boot()
 	{
 		// serverBooting = true;
 		if(!remoteControlled)
 		{
-            bootServerApp(callback);
+            bootServerApp();
 		}
 	}
 	
-    void Server::bootServerApp(server_reply_func_t callback)
+    void Server::bootServerApp()
 	{
-        scsynth->boot(callback);
+        scsynth->boot();
 		initTree();
 	}
 	

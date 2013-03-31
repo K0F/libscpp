@@ -13,13 +13,6 @@
 
 namespace sc {
 
-    server_reply_func_t bootCallback;
-
-    void nullCallback()
-    {
-
-    }
-
 	InternalSynthServer::InternalSynthServer(WorldOptions _options, const char* _pluginsPath,  
 											 const char* _synthdefsPath, int _preferredPort) :
 		options(_options),
@@ -58,13 +51,11 @@ namespace sc {
 	}
 	
     void reply_func(struct ReplyAddress* /*addr*/, char* /*msg*/, int /*size*/) {
-        bootCallback();
-	}
+
+    }
 	
-    void InternalSynthServer::boot(server_reply_func_t callback)
-	{
-        bootCallback = callback;
-		
+    void InternalSynthServer::boot()
+	{		
 		if (!world) {
 			//SetPrintFunc(&vpost);
 			

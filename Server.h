@@ -162,8 +162,8 @@ namespace sc {
 		
 		typedef bool (*BootFailHandler)();
         // Removed bool startAliveThread, bool recover, Server::BootFailHandler* onFail,
-        void boot(server_reply_func_t callback = nullCallback);
-        void bootServerApp(server_reply_func_t callback);
+        void boot();
+        void bootServerApp();
 		void reboot();
 		void status();
 		void setNotify(bool flag = true);
