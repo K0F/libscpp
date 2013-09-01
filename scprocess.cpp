@@ -77,7 +77,7 @@ void ScProcess::toggleRunning()
     }
 }
 
-void ScProcess::startLanguage()
+void ScProcess::startLanguage(const std::string& arguments)
 {
     if(state() != UnixProcess::NotRunning)
     {
@@ -85,7 +85,7 @@ void ScProcess::startLanguage()
         return;
     }
 
-    start();
+    start(arguments);
 }
 
 void ScProcess::stopLanguage()

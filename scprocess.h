@@ -65,7 +65,7 @@ public:
 
     // Slots
     void toggleRunning();
-    void startLanguage();
+    void startLanguage(const std::string& arguments = "");
     void stopLanguage();
     void restartLanguage();
     void recompileClassLibrary();
