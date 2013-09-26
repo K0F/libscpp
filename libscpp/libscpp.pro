@@ -65,9 +65,13 @@ PRE_TARGETDEPS += $${LIBSNDFILE}/libsndfile.a
 LIBS += $${FFTWF}/libfftw3f.a
 PRE_TARGETDEPS += $${FFTWF}/libfftw3f.a
 
+linux-g++ {
+
 # Jack
 LIBS += $${JACK}/libjack.so
 PRE_TARGETDEPS += $${JACK}/libjack.so
+
+}
 
 # FLAC
 LIBS += $${FLAC}/libFLAC.a
@@ -86,6 +90,8 @@ PRE_TARGETDEPS += $${OGG}/libogg.a
 
 mac {
     DEFINES += __APPLE__
+    INCLUDEPATH += $${BOOST}
+    DEPENDPATH += $${BOOST}
 }
 
 linux-g++ {

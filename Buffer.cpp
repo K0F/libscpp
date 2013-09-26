@@ -11,8 +11,13 @@
 
 #include "Buffer.h"
 #include "Server.h"
+#ifndef __APPLE__
 #include "boost/date_time/posix_time/posix_time.hpp"
 #include "boost/date_time/gregorian/gregorian.hpp"
+#else
+#include <time.h>
+#include <sstream>
+#endif
 
 namespace sc {
 	
@@ -375,13 +380,18 @@ namespace sc {
 		
 		if(_path == NULL)
 		{
+#ifndef __APPLE__
 			boost::posix_time::ptime pt(boost::posix_time::second_clock::local_time());
 			
 			dirString.append("/SC_");
 			dirString.append(boost::gregorian::to_simple_string(pt.date()));
 			dirString.append("-");
 			dirString.append(boost::posix_time::to_simple_string(pt.time_of_day()));
-			
+#else
+            std::stringstream ss;
+            ss << time(0);
+            dirString.append(ss.str());
+#endif
 			size_t found = dirString.find(":");
 			dirString.replace(dirString.begin() + found, dirString.begin() + found + 1, "-");
 			found = dirString.find(":");

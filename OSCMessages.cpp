@@ -17,7 +17,9 @@
  */
 
 
+#include <cstdlib>
 #include "OSCMessages.h"
+
 OSCMessages::OSCMessages(){ }
 
 #ifdef __APPLE__
