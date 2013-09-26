@@ -6,6 +6,8 @@
  *
  */
 
+
+/*
 #pragma once
 
 #include "AbstractFunction.h"
@@ -105,28 +107,6 @@ namespace sc {
 				item = this->next();
 			}
 		}
-		
-		/*
-		subSample
-		generate
-		reject
-		select
-		dot
-		interace
-		*/
-		
-		// compiler won't let us use ++ ...booooo...
-		//Routine operator+=(Stream& stream);
-		//Routine appendStream(Stream& stream);
-		
-		/*
-		collate
-		<>
-		composeUnaryOp
-		comboseBinaryOp
-		reverseCbomposeBinaryOp
-		compseNAryOp
-		*/
 		
 		virtual void yield(boost::any inval);
 		
@@ -282,3 +262,4 @@ namespace sc {
 		Event* event;
 	};
 };
+    */

@@ -12,6 +12,7 @@
 #include "boost/thread.hpp"
 #include "Stream.h"
 
+/*
 namespace sc {
 
 	class Thread : public Stream<float64>, public boost::thread {
@@ -23,4 +24,4 @@ namespace sc {
 	public:
 		
 	};
-};
+};*/

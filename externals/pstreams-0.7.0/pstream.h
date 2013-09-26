@@ -215,15 +215,15 @@ namespace redi
       wait(bool nohang = false);
 
       /// Return the file descriptor for the output pipe.
-      fd_type&
+      inline typename basic_pstreambuf<CharT,Traits>::fd_type&
       wpipe();
 
       /// Return the file descriptor for the active input pipe.
-      fd_type&
+      inline typename basic_pstreambuf<CharT,Traits>::fd_type&
       rpipe();
 
       /// Return the file descriptor for the specified input pipe.
-      fd_type&
+      inline typename basic_pstreambuf<CharT,Traits>::fd_type&
       rpipe(buf_read_src which);
 
       void
