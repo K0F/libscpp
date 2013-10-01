@@ -2,6 +2,7 @@ QT -= core gui
 CONFIG -= qt
 TARGET = SC++
 TEMPLATE = lib
+CONFIG += x86_64
 CONFIG += staticlib
 
 include(./QMakeVars.pri)
@@ -92,6 +93,22 @@ mac {
     DEFINES += __APPLE__
     INCLUDEPATH += $${BOOST}
     DEPENDPATH += $${BOOST}
+    CMAKE_CXXFLAGS += -stdlib=libc++ -std=c++11
+    QMAKE_CXXFLAGS += -stdlib=libc++ -std=c++11
+    LIBS += -lc++
+    QMAKE_CXXFLAGS += -mmacosx-version-min=10.8
+    CXX_FLAGS += -mmacosx-version-min=10.8
+
+
+    # Change to your OS version (and make sure its there!)
+    MAC_SDK  = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+    if( !exists( $$MAC_SDK) ) {
+      error("The selected Mac OSX SDK does not exist at $$MAC_SDK!")
+    }
+
+    QMAKE_MAC_SDK = $$MAC_SDK
+    INCLUDEPATH += $$QMAKE_MAC_SDK/System/Library/Frameworks/CoreFoundation.framework/Versions/A/Headers
+    DEPENDPATH  += $$QMAKE_MAC_SDK/System/Library/Frameworks/CoreFoundation.framework/Versions/A/Headers
 }
 
 linux-g++ {

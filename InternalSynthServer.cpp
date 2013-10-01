@@ -27,7 +27,7 @@ namespace sc {
 		gInternalSynthServer.mPluginsPath = _pluginsPath;
 		gInternalSynthServer.mSynthDefsPath = _synthdefsPath;
 
-#ifdef __APPLE__
+#ifdef __APPLE_NOTWORKING__
 		pluginsPath = CFStringCreateWithCString(NULL, _pluginsPath, kCFStringEncodingASCII);
 		synthdefsPath = CFStringCreateWithCString(NULL, _synthdefsPath, kCFStringEncodingASCII);
 #else
@@ -85,15 +85,15 @@ namespace sc {
 			pthread_t scThread;
             OSCMessages messages;
 
-#ifdef __APPLE__
+#ifdef __APPLE_NOTWORKING__
             char stringBuffer[PATH_MAX];
 
 			
-			CFStringGetCString(pluginsPath, stringBuffer, sizeof(stringBuffer), kCFStringEncodingUTF8);
-			setenv("SC_PLUGIN_PATH", stringBuffer, 1);
+            // CFStringGetCString(pluginsPath, stringBuffer, sizeof(stringBuffer), kCFStringEncodingUTF8);
+            setenv("SC_PLUGIN_PATH", pluginsPath.c_str(), 1);
 			
-			CFStringGetCString(synthdefsPath, stringBuffer, sizeof(stringBuffer), kCFStringEncodingUTF8);
-			setenv("SC_SYNTHDEF_PATH", stringBuffer, 1);
+            // CFStringGetCString(synthdefsPath, stringBuffer, sizeof(stringBuffer), kCFStringEncodingUTF8);
+            setenv("SC_SYNTHDEF_PATH", synthdefsPath.c_str(), 1);
 #else
             setenv("SC_PLUGIN_PATH", pluginsPath.c_str(), 1);
             setenv("SC_SYNTHDEF_PATH", synthdefsPath.c_str(), 1);

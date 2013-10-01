@@ -1,6 +1,7 @@
 # BUILD SUPERCOLLIDER WITH NO SC IDE, NO QT, NO AVAHI, AND AS STATIC LIBS!!!!!!!!!!!!############################################
 # Supercollider vars #################################################################################################
 SUPERCOLLIDER_SOURCE = /Users/octopian/Documents/source/libraries/SuperCollider-Source
+SC_HOME = /Users/octopian/Documents/source/libraries/SuperCollider-Source
 LIBSCSYNTH = /Users/octopian/Documents/source/libraries/SuperCollider-Source/NoQtBuild/server/scsynth
 LIBSCLANG = /Users/octopian/Documents/source/libraries/SuperCollider-Source/NoQtBuild/lang
 BOOST = /usr/local/Cellar/boost/1.53.0/include

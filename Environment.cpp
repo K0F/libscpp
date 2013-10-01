@@ -12,6 +12,7 @@
 namespace sc {
 	
 	Environment* Environment::currentEnvironment = NULL;
+    std::deque<Environment*> Environment::stack;
 
 	Environment* Environment::staticMake(EnvirMakeFunc function)
 	{

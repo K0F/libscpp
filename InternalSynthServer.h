@@ -52,7 +52,7 @@ namespace sc {
 		World* getWorld();
 		void setWorldOptions(WorldOptions _options);
 
-#ifdef __APPLE__
+#ifdef __APPLE_NOTWORKING__
 		CFStringRef synthName;
 #else
         std::string synthName;
@@ -70,7 +70,7 @@ namespace sc {
 		};
 		
 		WorldOptions options;
-#ifdef __APPLE__
+#ifdef __APPLE_NOTWORKING__
         CFStringRef pluginsPath, synthdefsPath;
 #else
         std::string pluginsPath, synthdefsPath;

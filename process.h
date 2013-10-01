@@ -1,6 +1,9 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
+/* The classes below are exported */
+#pragma GCC visibility push(default)
+
 #include <cstdio>
 #include <string>
 #include <sstream>
