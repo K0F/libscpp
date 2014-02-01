@@ -52,6 +52,8 @@ PRE_TARGETDEPS += $${BOOST_LIBS}/libboost_date_time.a
 LIBS += $${BOOST_LIBS}/libboost_signals.a
 PRE_TARGETDEPS += $${BOOST_LIBS}/libboost_signals.a
 
+LIBS += lboost_thread
+
 # Libsndfile
 LIBS += $${LIBSNDFILE}/libsndfile.a
 PRE_TARGETDEPS += $${LIBSNDFILE}/libsndfile.a
@@ -114,6 +116,7 @@ mac {
 linux-g++-64 {
     DEFINES += __LINUX__
     DEFINES += SC_AUDIO_API=SC_AUDIO_API_JACK
+    QMAKE_CXXFLAGS += -std=c++11
 }
 
 

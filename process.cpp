@@ -139,7 +139,7 @@ void UnixProcess::start(const std::string& arguments)
     if(ps->is_open())
     {
         setProcessState(UnixProcess::Running);
-        iothread = new boost::thread(boost::bind(&UnixProcess::iorun, this));
+        iothread = new std::thread(std::bind(&UnixProcess::iorun, this));
     }
 
     else

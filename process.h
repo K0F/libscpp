@@ -15,11 +15,11 @@
 #include <stdio.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+#include <thread>
 
 // #include <boost/signal.hpp>
 #include "customboost/customsignals2.hpp"
 #include <boost/bind.hpp>
-#include <boost/thread.hpp>
 
 #include "externals/pstreams-0.7.0/pstream.h";
 
@@ -87,7 +87,7 @@ protected:
     std::string mWorkingDirectory;
     std::string mProgramPath;
     redi::pstream* ps;
-    boost::thread* iothread;
+    std::thread* iothread;
 };
 
 } // sc namespace
