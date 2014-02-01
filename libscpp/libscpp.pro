@@ -35,14 +35,14 @@ DEPENDPATH += /
 
 #CONFIG+=no_smart_library_merge
 #LIBS += -Wl,--start-group
-QMAKE_LFLAGS += -Wl,--start-group,--end-group
+#QMAKE_LFLAGS += -Wl,--start-group,--end-group
 
 #libsclang.a
-LIBS += $${LIBSCLANG}/libsclang.a -Wl,--no-whole-archive
+LIBS += $${LIBSCLANG}/libsclang.a# -Wl,--no-whole-archive
 PRE_TARGETDEPS += $${LIBSCLANG}/libsclang.a
 
 #libscsynth.a
-LIBS += -Wl,--whole-archive $${LIBSCSYNTH}/libscsynth.a
+LIBS += $${LIBSCSYNTH}/libscsynth.a #-Wl,--whole-archive
 PRE_TARGETDEPS += $${LIBSCSYNTH}/libscsynth.a
 
 #boost
@@ -111,7 +111,7 @@ mac {
     DEPENDPATH  += $$QMAKE_MAC_SDK/System/Library/Frameworks/CoreFoundation.framework/Versions/A/Headers
 }
 
-linux-g++ {
+linux-g++-64 {
     DEFINES += __LINUX__
     DEFINES += SC_AUDIO_API=SC_AUDIO_API_JACK
 }
