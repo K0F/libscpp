@@ -1,4 +1,3 @@
-=======
 libsc++
 =======
 
@@ -9,7 +8,7 @@ website: http://chadmckinneyaudio.com/
 
 This is an extremely early version that is concurrently undergoing active and heavy development. SuperCollider is a large language and this is the beginning of a meager attempt to replicate some of the functionality. It is (and will likely always be) incomplete and not thoroughly tested. 
 
-=============
+
 PREREQUISITES
 =============
 
@@ -41,7 +40,7 @@ http://supercollider.sourceforge.net/downloads/
 Boost:
 http://www.boost.org/
 
-========
+
 BUILDING
 ========
 
@@ -49,7 +48,7 @@ There are two options for building libsc++. The first is to use the provided XCo
 
 Building SuperCollider for libsc++ requires some specific tweaks. To make things easier you should use cmake-gui so you can quickly find all the arguments you need to set. You should build a special version (not for personal SC usage) that is built with no Qt, no Avahi, with the native flag checked, as RELEASE, and NO SCIDE. If you would like to statically link to libsc++ you'll need to include several dependancies in your program (reference the .pro file see a full list), and you'll need to make sure to build SuperCollider WITHOUT the libscynth option checked (by default SC builds against static libs). In general this build process is complicated and unless you're familiar with building SC you may find it (too) difficult. Best of luck! 
 
-=======
+
 USAGE
 =======
 
@@ -62,6 +61,7 @@ The Synth Defs path defaults to /Users/USER_NAME/Library/Application\ Support/Su
 
 Both of these can be (and likely SHOULD BE) changed via the ServerOptions class. When you create a new Server instance you can provide it an instance of ServerOptions. For the most part these can be left to their defaults however the two mentioned path as well as the port number should likely be changed. It is entirely possible that your program will be run on the same machine as SuperCollider so setting the port for your Server to be different than the default 57110 will prevent several issues for the user. 
 
+```c++
 //EXAMPLE CODE
 
 sc::ServerOptions options;
@@ -85,18 +85,19 @@ sc::Synth::grain("TestSine", sc::ARGS("freq", (double)(rand() % 2000), "amp", 0.
 //Recording is easy, BUT YOU MUST FIRST HAVE COMPILED THE "libsc++-server-record" SYNTHDEF IN libSC++SynthDefs.rtf AND PUT IT IN THE SYNTHDEFS FOLDER YOU LINK TO
 // Using Our Previous server instance
 server->record();
-É(do stuff)
+// ...do stuff...
 server->stopRecording();
+```
 
 This will drop it by default into the SuperCollider recordings  path, for example on OS X: 
 /Users/USER_NAME/Music/SuperCollider\ Recordings
 
-========
+
 STATUS
 =======
 libsc++ is a project mainly used by myself and members of my band Glitch Lich (www.glitchlich.com), however I've released it as open source along with all my other software in the hopes other may find it useful as well. That said, it's not the cleanest of projects and other developers may find it somewhat lacking in documentation. I would welcome external help to develop a more user friendly and extensive library, but as it stands development mainly focuses on the needs of my personal projects and will see continued, if not sporadic development for the foreseeable future.
 
-=======
+
 License
 =======
 
