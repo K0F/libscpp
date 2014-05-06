@@ -69,7 +69,8 @@ options.setPortNum(67110); // Change from the defaul 57110 to prevent conflicts 
 options.pluginPath = "./Yig.app/Contents/MacOS/plugins"; // Path in our app bundle
 options.synthDefPath = "./Yig.app/Contents/MacOS/synthdefs"; // Path in our app bundle
 
-// Create a new Server instance. This will default as the Server::internal instance which other classes will reference.
+// Create a new Server instance. 
+// This will default as the Server::internal instance which other classes will reference.
 sc::Server* server = new sc::Server(options); 
 server->boot(); // Boot the server
 
@@ -77,13 +78,18 @@ server->boot(); // Boot the server
 // The synth defaults to using the internal server which is our Server instance.
 sc::Synth::grain("TestSine"); 
 
-// Here is an example of providing arguments to a synth with the sc::ARGS() macro. It makes proving a variable number of arguments easier.
-// CAUTION. Your values must be in (const char*), (double) pairs or the behavior IS UNDEFINED. YOU CANNOT USE AN INT YOU MUST CAST TO FLOAT OR DOUBLE.
+/*
+  Here is an example of providing arguments to a synth with the sc::ARGS() macro. 
+  It makes proving a variable number of arguments easier.
+  CAUTION. Your values must be in (const char*), (double) pairs or the behavior IS UNDEFINED. 
+  YOU CANNOT USE AN INT YOU MUST CAST TO FLOAT OR DOUBLE.
+*/
 sc::Synth::grain("TestSine", sc::ARGS("freq", (double)(rand() % 2000), "amp", 0.1, "mod", 30.0));
 
 
-//Recording is easy, BUT YOU MUST FIRST HAVE COMPILED THE "libsc++-server-record" SYNTHDEF IN libSC++SynthDefs.rtf AND PUT IT IN THE SYNTHDEFS FOLDER YOU LINK TO
-// Using Our Previous server instance
+
+// Recording is easy, BUT YOU MUST FIRST HAVE COMPILED THE "libsc++-server-record" SYNTHDEF IN libSC++SynthDefs.rtf 
+// AND PUT IT IN THE SYNTHDEFS FOLDER YOU LINK TO
 server->record();
 // ...do stuff...
 server->stopRecording();
