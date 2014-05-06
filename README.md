@@ -81,15 +81,15 @@ sc::Synth::grain("TestSine");
 /*
   Here is an example of providing arguments to a synth with the sc::ARGS() macro. 
   It makes proving a variable number of arguments easier.
-  CAUTION. Your values must be in (const char*), (double) pairs or the behavior IS UNDEFINED. 
-  YOU CANNOT USE AN INT YOU MUST CAST TO FLOAT OR DOUBLE.
+  CAUTION. Your values must be in (const char*), (double) pairs or the behavior 
+  IS UNDEFINED. YOU CANNOT USE AN INT YOU MUST CAST TO FLOAT OR DOUBLE.
 */
-sc::Synth::grain("TestSine", sc::ARGS("freq", (double)(rand() % 2000), "amp", 0.1, "mod", 30.0));
+sc::Synth::grain("Test",sc::ARGS("freq",(double)(rand()%2000),"amp",0.1,"mod",30));
 
 
 
-// Recording is easy, BUT YOU MUST FIRST HAVE COMPILED THE "libsc++-server-record" SYNTHDEF IN libSC++SynthDefs.rtf 
-// AND PUT IT IN THE SYNTHDEFS FOLDER YOU LINK TO
+// Recording is easy, BUT YOU MUST FIRST HAVE COMPILED THE "libsc++-server-record" 
+// SYNTHDEF IN libSC++SynthDefs.rtf AND PUT IT IN THE SYNTHDEFS FOLDER YOU LINK TO
 server->record();
 // ...do stuff...
 server->stopRecording();
